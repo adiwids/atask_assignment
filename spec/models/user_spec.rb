@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:subject) { FactoryBot.build(:user) }
+  let(:subject) { FactoryBot.build(:user_with_initial_balance) }
 
-  include_examples 'Transaction Actor Examples'
+  include_examples 'Wallet Owner Examples'
 
   context 'associations' do
     it { is_expected.to have_many(:memberships).with_foreign_key('member_id').dependent(:destroy) }

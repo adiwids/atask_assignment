@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include TransactionActor
+  include WalletOwner
 
   has_many :memberships, foreign_key: 'member_id', dependent: :destroy
   has_many :teams, through: :memberships, source: :team

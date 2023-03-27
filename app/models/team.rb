@@ -1,5 +1,5 @@
 class Team < ApplicationRecord
-  include TransactionActor
+  include WalletOwner
 
   belongs_to :owner, class_name: 'User', optional: true
   has_many :memberships, dependent: :destroy

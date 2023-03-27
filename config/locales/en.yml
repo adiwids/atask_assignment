@@ -43,9 +43,11 @@ en:
               invalid_deposit_amount: Invalid deposit amount
         user:
           attributes:
-            balance:
-              insufficient: is insufficient
+            base:
+              insufficient_balance: Balance is insufficient
+              wallet_not_empty: Wallet not empty
         team:
           attributes:
-            balance:
-              insufficient: is insufficient
+            base:
+              insufficient_balance: Balance is insufficient
+              wallet_not_empty: Wallet not empty

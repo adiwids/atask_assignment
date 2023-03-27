@@ -1,13 +1,25 @@
 FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "test.user#{n}@lvh.me" }
-    balance_cents { 100 }
-    balance_currency { "IDR" }
+
+    transient do
+      initial_balance { Money.new(0, 'IDR') }
+    end
+
+    after(:build) do |factory, evaluator|
+      factory.build_wallet(balance: evaluator.initial_balance)
+    end
+
+    after(:create) do |factory, evaluator|
+      factory.create_wallet(balance: evaluator.initial_balance)
+    end
   end
 
   factory :user_with_initial_balance, parent: :user do
+    initial_balance { Money.new(10000, 'IDR') }
+
     after(:create) do |factory, evaluator|
-      FactoryBot.create(:transaction, :deposit, owner: factory, owner_name: factory.email, amount_cents: 100)
+      FactoryBot.create(:transaction, :deposit, owner: factory, owner_name: factory.email, amount: evaluator.initial_balance)
     end
   end
 

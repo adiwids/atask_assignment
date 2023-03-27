@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_18_025829) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_040023) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,8 +27,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_18_025829) do
     t.string "name"
     t.bigint "owner_id"
     t.integer "members_count", default: 0
-    t.integer "balance_cents", default: 0, null: false
-    t.string "balance_currency", default: "IDR", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_teams_on_name"
@@ -37,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_18_025829) do
 
   create_table "transactions", force: :cascade do |t|
     t.string "transaction_type", null: false
-    t.datetime "date_time", default: "2023-03-18 04:33:41"
+    t.datetime "date_time", default: "2023-03-27 05:35:27"
     t.bigint "owner_id"
     t.string "owner_type", null: false
     t.string "owner_name"
@@ -54,11 +52,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_18_025829) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email"
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.bigint "owner_id"
+    t.string "owner_type"
     t.integer "balance_cents", default: 0, null: false
     t.string "balance_currency", default: "IDR", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email"
+    t.index ["owner_id", "owner_type"], name: "wallets_owner_idx"
   end
 
   add_foreign_key "memberships", "teams"

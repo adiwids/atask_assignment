@@ -20,7 +20,7 @@ class Transaction < ApplicationRecord
   end
 
   def set_amount_sign
-    self_amount_cents = amount_cents * signer_value
+    self.amount_cents = amount_cents * signer_value
   end
 
   def signer_value

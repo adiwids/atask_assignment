@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Team, type: :model do
-  let(:subject) { FactoryBot.build(:team, balance: Money.new(100, 'IDR')) }
+  let(:subject) { FactoryBot.build(:team_with_initial_balance) }
 
-  include_examples 'Transaction Actor Examples'
+  include_examples 'Wallet Owner Examples'
 
   context 'associations' do
     it { is_expected.to belong_to(:owner).class_name('User').optional(true) }
