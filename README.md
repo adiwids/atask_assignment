@@ -1,6 +1,6 @@
 # Project Intro
 
-Generic wallet implementation in Ruby on Rails using:
+[Generic wallet implementation](/ASSIGNMENT.md) in Ruby on Rails using:
 
   * Ruby 3.2
   * PostgreSQL
