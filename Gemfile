@@ -71,3 +71,4 @@ group :test do
 end
 
 gem "money-rails", "~> 1.15"
+gem "dotenv-rails", "~> 2.8"
